@@ -1,0 +1,8 @@
+[31/03/2020 11:03:50] - [CMAX] - VALUES EVALUATE: {"new_server":"https:\/\/197.159.31.110:8989","new_uri":"\/billing-service\/payBill"} 
+[31/03/2020 11:03:49] - [CMAX] - ORIGINAL URI: /index.php/proxy/dev/billing-service/payBill 
+[31/03/2020 10:59:27] - [CMAX] - VALUES EVALUATE: {"new_server":"https:\/\/197.159.31.110:8989","new_uri":"\/billing-service\/payBill"} 
+[31/03/2020 10:59:27] - [CMAX] - ORIGINAL URI: /index.php/proxy/dev/billing-service/payBill 
+[31/03/2020 10:59:23] - [CMAX] - VALUES EVALUATE: {"new_server":"https:\/\/197.159.31.110:8989","new_uri":"\/billing-service\/payBill"} 
+[31/03/2020 10:59:23] - [CMAX] - ORIGINAL URI: /index.php/proxy/dev/billing-service/payBill 
+[31/03/2020 10:58:31] - [CMAX] - VALUES EVALUATE: {"new_server":"http:\/\/localhost","new_uri":"\/dev\/billing-service\/payBill"} 
+[31/03/2020 10:58:31] - [CMAX] - ORIGINAL URI: /index.php/proxy/dev/billing-service/payBill 

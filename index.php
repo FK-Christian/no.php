@@ -22,10 +22,24 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+include_once './config.php';
 
 $backend_url = "https://myapp.backend.com:3000/";
+
 $request_uri = $_SERVER['REQUEST_URI'];
-$uri_rel = "subdir/no.php"; # URI to this file relative to public_html
+
+addLog("ORIGINAL URI: $request_uri", "PROXY_TEST");
+/*************************************************************/
+$new_values = getServeurUrl($request_uri);
+
+addLog("VALUES EVALUATE: ". json_encode($new_values), "PROXY_TEST");
+
+$backend_url = $new_values['new_server'];
+
+$request_uri = $new_values['new_uri'];
+/**************************************************************/
+
+$uri_rel = ""; # URI to this file relative to public_html
 
 $request_includes_nophp_uri = true;
 if ( $request_includes_nophp_uri == false) {
@@ -94,6 +108,8 @@ curl_setopt( $curl, CURLOPT_HTTPHEADER, getRequestHeaders() );
 curl_setopt( $curl, CURLOPT_FOLLOWLOCATION, true ); # follow redirects
 curl_setopt( $curl, CURLOPT_HEADER, true ); # include the headers in the output
 curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true ); # return output as string
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); //
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); //
 
 if ( strtolower($_SERVER['REQUEST_METHOD']) == 'post' ) {
     curl_setopt( $curl, CURLOPT_POST, true );
@@ -110,7 +126,6 @@ if ( strtolower($_SERVER['REQUEST_METHOD']) == 'post' ) {
   
 $contents = curl_exec( $curl ); # reverse proxy. the actual request to the backend server.
 curl_close( $curl ); # curl is done now
-
 
 list( $header_text, $contents ) = preg_split( '/([\r\n][\r\n])\\1/', $contents, 2 );
 
